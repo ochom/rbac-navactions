@@ -9,17 +9,17 @@ import (
 
 func AllMenu() []models.Menu {
 	return []models.Menu{
-		{Code: "001", Title: "Home", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: true, Requires: models.PermissionViewConsumer},
-		{Code: "001", Title: "Consumers", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: true, Requires: models.PermissionViewConsumer},
-		{Code: "001", Title: "Update Consumer", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionUpdateConsumer},
-		{Code: "001", Title: "Delete Consumer", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionDeleteConsumer},
-		{Code: "002", Title: "Agents", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionActivateAgent},
-		{Code: "002", Title: "Agent Registration", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: true, Requires: models.PermissionActivateAgent},
-		{Code: "002", Title: "Agent Identification", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: true, Requires: models.PermissionActivateAgent},
-		{Code: "003", Title: "Patients", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionActivateAgent},
-		{Code: "003", Title: "Identification", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionActivateAgent},
-		{Code: "003", Title: "Registration", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionActivateAgent},
-		{Code: "004", Title: "Profile", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionActivateAgent},
+		{Code: "001", Title: "Home", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: true, Requires: models.PermissionViewConsumer, Priority: models.MenuPriorityHigh},
+		{Code: "002", Title: "Consumers", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: true, Requires: models.PermissionViewConsumer, Priority: models.MenuPriorityHigh},
+		{Code: "002", Title: "Update Consumer", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionUpdateConsumer},
+		{Code: "002", Title: "Delete Consumer", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionDeleteConsumer},
+		{Code: "003", Title: "Agents", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: true, Requires: models.PermissionActivateAgent, Priority: models.MenuPriorityLow},
+		{Code: "003", Title: "Agent Registration", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionActivateAgent},
+		{Code: "003", Title: "Agent Identification", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionActivateAgent},
+		{Code: "004", Title: "Patients", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: true, Requires: models.PermissionActivateAgent, Priority: models.MenuPriorityHigh},
+		{Code: "004", Title: "Identification", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionActivateAgent},
+		{Code: "004", Title: "Registration", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: false, Requires: models.PermissionActivateAgent},
+		{Code: "005", Title: "Profile", Icon: models.Link{URL: "test.url.com/png"}, OnTapRoute: "", IsParent: true, Requires: models.PermissionActivateAgent, Priority: models.MenuPriorityLow},
 	}
 }
 
