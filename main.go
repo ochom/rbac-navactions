@@ -1,7 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
+	"net/http"
 
 	"example.com/ochom/hello/models"
 )
@@ -100,7 +101,10 @@ func GroupPriority(groupNested []models.Menu) (primary, secondary []models.Menu)
 	return primary, secondary
 }
 
-func main() {
+func Index(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+
 	role := models.RoleTypeAgent
 	user := models.User{
 		Roles:        []models.Role{role},
@@ -111,6 +115,17 @@ func main() {
 	userNavActions := GetNavigationActions(user)
 	groupNested := GroupNested(userNavActions)
 	primary, secondary := GroupPriority(groupNested)
+	data := struct {
+		Primary   []models.Menu
+		Secondary []models.Menu
+	}{
+		Primary:   primary,
+		Secondary: secondary,
+	}
+	json.NewEncoder(w).Encode(data)
+}
 
-	fmt.Println(primary, secondary)
+func main() {
+	http.HandleFunc("/", Index)
+	http.ListenAndServe(":8081", nil)
 }
