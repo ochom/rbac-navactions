@@ -89,15 +89,6 @@ func GroupPriority(groupNested []models.Menu) (primary, secondary []models.Menu)
 			}
 		}
 	}
-
-	for _, v := range groupNested {
-		if len(primary) < 4 {
-			if v.Priority == models.MenuPriorityHigh {
-				primary = append(primary, v)
-				added[v.Code] = v
-			}
-		}
-	}
 	return primary, secondary
 }
 
@@ -116,8 +107,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	groupNested := GroupNested(userNavActions)
 	primary, secondary := GroupPriority(groupNested)
 	data := struct {
-		Primary   []models.Menu
-		Secondary []models.Menu
+		Primary   []models.Menu `json:"primary"`
+		Secondary []models.Menu `json:"secondary"`
 	}{
 		Primary:   primary,
 		Secondary: secondary,
