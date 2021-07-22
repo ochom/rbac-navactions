@@ -10,7 +10,15 @@ func (u User) HasRole(role Role) bool {
 }
 
 func (u User) HasPermission(perm Permission) bool {
-	for _, v := range u.Permissions {
+	perms := []Permission{}
+
+	// get all permissions
+	for _, r := range u.Roles {
+		perms = append(perms, r.Permissions()...)
+	}
+
+	// check if required permission exists
+	for _, v := range perms {
 		if v == perm {
 			return true
 		}

@@ -205,7 +205,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	role := models.RoleTypeAgent
 	user := models.User{
 		Roles:        []models.Role{role},
-		Permissions:  role.Permissions(),
 		FavoriteMenu: []string{"Home"},
 	}
 

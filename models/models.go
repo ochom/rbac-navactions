@@ -40,7 +40,6 @@ type Permission struct {
 }
 
 type User struct {
-	Permissions  []Permission `json:"permissions,omitempty"`
-	Roles        []Role       `json:"roles,omitempty"`
-	FavoriteMenu []string     `json:"favoriteMenu,omitempty"`
+	Roles        []Role   `json:"roles,omitempty"`
+	FavoriteMenu []string `json:"favoriteMenu,omitempty"`
 }
