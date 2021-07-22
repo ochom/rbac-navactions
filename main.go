@@ -44,7 +44,7 @@ func GroupPriority(actions []models.Menu) (primary, secondary []models.Menu) {
 			OnTapRoute: "",
 			IsParent:   true,
 			Requires:   models.PermissionViewConsumer,
-			Priority:   models.MenuPriorityHigh,
+			Primary:    true,
 		},
 	}
 
@@ -75,7 +75,7 @@ func GroupPriority(actions []models.Menu) (primary, secondary []models.Menu) {
 			}
 			// // add all the high priority first
 			for _, action := range actions {
-				if action.Priority == models.MenuPriorityHigh {
+				if action.Primary {
 
 					_, exist := added[action.Code]
 					if !exist && len(action.Nested) == 0 {

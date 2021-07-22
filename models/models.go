@@ -4,13 +4,6 @@ type Link struct {
 	URL string `json:"url,omitempty"`
 }
 
-type MenuPriority string
-
-const (
-	MenuPriorityHigh MenuPriority = "HIGH"
-	MenuPriorityLow  MenuPriority = "LOW"
-)
-
 type Menu struct {
 	Code       string        `json:"code,omitempty"`
 	Title      string        `json:"title,omitempty"`
@@ -20,10 +13,7 @@ type Menu struct {
 	IsParent   bool          `json:"isParent,omitempty"`
 	Nested     []interface{} `json:"nested,omitempty"`
 	Requires   Permission    `json:"requires,omitempty"`
-	Priority   MenuPriority  `json:"priority"`
-
-	// Primary marks
-	Primary bool `json:"primary"`
+	Primary    bool          `json:"primary"`
 }
 
 type Role string

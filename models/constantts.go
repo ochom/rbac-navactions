@@ -21,7 +21,7 @@ var AllNavActions []Menu = []Menu{
 		OnTapRoute: "",
 		IsParent:   true,
 		Requires:   PermissionViewConsumer,
-		Priority:   MenuPriorityHigh,
+		Primary:    true,
 	},
 	{
 		Code:       "002",
@@ -46,7 +46,7 @@ var AllNavActions []Menu = []Menu{
 		OnTapRoute: "",
 		IsParent:   true,
 		Requires:   PermissionActivateAgent,
-		Priority:   MenuPriorityLow,
+		Primary:    false,
 	},
 	{
 		Code:       "003",
@@ -71,7 +71,7 @@ var AllNavActions []Menu = []Menu{
 		OnTapRoute: "",
 		IsParent:   true,
 		Requires:   PermissionActivateAgent,
-		Priority:   MenuPriorityHigh,
+		Primary:    true,
 	},
 	{
 		Code:       "004",
@@ -96,6 +96,6 @@ var AllNavActions []Menu = []Menu{
 		OnTapRoute: "",
 		IsParent:   true,
 		Requires:   PermissionActivateAgent,
-		Priority:   MenuPriorityLow,
+		Primary:    false,
 	},
 }
