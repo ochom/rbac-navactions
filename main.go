@@ -134,8 +134,22 @@ func GroupPriority(actions []models.Menu) (primary, secondary []models.Menu) {
 
 	added := make(map[string]models.Menu)
 
-	if len(actions) < 5 {
-		primary = actions
+	//pb is number of navactions that can possibly be on bottom navigation
+	pb := 0
+	for _, v := range actions {
+		if len(v.Nested) == 0 {
+			pb += 1
+		}
+	}
+
+	// add all the possible bottom action to primary is they are less or equal to 4
+	if pb <= 4 {
+		for _, v := range actions {
+			if len(v.Nested) == 0 {
+				primary = append(primary, v)
+				added[v.Code] = v
+			}
+		}
 	} else {
 		for {
 			if len(primary) == 4 {
