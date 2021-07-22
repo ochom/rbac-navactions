@@ -52,29 +52,31 @@ func GroupPriority(groupNested []models.Menu) (primary, secondary []models.Menu)
 
 	added := make(map[string]models.Menu)
 
-	if len(groupNested) < 5 {
-		primary = groupNested
-	} else {
-		for {
-			if len(primary) == 4 {
-				break
-			}
-			// // add all the high priority first
-			for _, v := range groupNested {
-				if v.Priority == models.MenuPriorityHigh {
-					_, ok := added[v.Code]
-					if !ok {
-						primary = append(primary, v)
-						added[v.Code] = v
-					}
+	//pb is number of navactions that can possibly be on bottom navigation
+	pb := 0
+	for _, v := range groupNested {
+		if len(v.Nested) == 0 {
+			pb += 1
+		}
+	}
 
-					if len(primary) == 4 {
-						break
-					}
-				}
+	// add all the possible bottom action to primary is they are less or equal to 4
+	if pb <= 4 {
+		for _, v := range groupNested {
+			if len(v.Nested) == 0 {
+				primary = append(primary, v)
+				added[v.Code] = v
 			}
-			// add every other item
-			for _, v := range groupNested {
+		}
+	}
+
+	for {
+		if len(primary) == 4 {
+			break
+		}
+		// // add all the high priority first
+		for _, v := range groupNested {
+			if v.Priority == models.MenuPriorityHigh {
 				_, ok := added[v.Code]
 				if !ok {
 					primary = append(primary, v)
@@ -86,13 +88,25 @@ func GroupPriority(groupNested []models.Menu) (primary, secondary []models.Menu)
 				}
 			}
 		}
-		// add all remaining items to secondary
+		// add every other item
 		for _, v := range groupNested {
 			_, ok := added[v.Code]
 			if !ok {
-				secondary = append(secondary, v)
+				primary = append(primary, v)
 				added[v.Code] = v
 			}
+
+			if len(primary) == 4 {
+				break
+			}
+		}
+	}
+	// add all remaining items to secondary
+	for _, v := range groupNested {
+		_, ok := added[v.Code]
+		if !ok {
+			secondary = append(secondary, v)
+			added[v.Code] = v
 		}
 	}
 	return primary, secondary
