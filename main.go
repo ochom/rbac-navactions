@@ -57,17 +57,18 @@ func GroupPriority(groupNested []models.Menu) (primary, secondary []models.Menu)
 	if len(groupNested) < 5 {
 		primary = groupNested
 	} else {
-		for {
-			if len(primary) == 4 {
-				break
-			}
-			// add all the high priority first
+		for len(primary) < 4 {
+			// // add all the high priority first
 			for _, v := range groupNested {
 				if v.Priority == models.MenuPriorityHigh {
 					_, ok := added[v.Code]
 					if !ok {
 						primary = append(primary, v)
 						added[v.Code] = v
+					}
+
+					if len(primary) == 4 {
+						break
 					}
 				}
 			}
@@ -77,6 +78,10 @@ func GroupPriority(groupNested []models.Menu) (primary, secondary []models.Menu)
 				if !ok {
 					primary = append(primary, v)
 					added[v.Code] = v
+				}
+
+				if len(primary) == 4 {
+					break
 				}
 			}
 		}
