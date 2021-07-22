@@ -9,17 +9,25 @@ func (u User) HasRole(role Role) bool {
 	return false
 }
 
-func (u User) HasPermission(perm Permission) bool {
+func (u User) GetPermissions() []Permission {
 	perms := []Permission{}
 
 	// get all permissions
-	for _, r := range u.Roles {
-		perms = append(perms, r.Permissions()...)
+	for _, role := range u.Roles {
+		perms = append(perms, role.Permissions()...)
 	}
 
+	// remove duplicated perms
+
+	return perms
+}
+
+func (u User) HasPermission(perm Permission) bool {
+	permissions := u.GetPermissions()
+
 	// check if required permission exists
-	for _, v := range perms {
-		if v == perm {
+	for _, permission := range permissions {
+		if permission == perm {
 			return true
 		}
 	}
