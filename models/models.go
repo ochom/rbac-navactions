@@ -20,7 +20,10 @@ type Menu struct {
 	IsParent   bool          `json:"isParent,omitempty"`
 	Nested     []interface{} `json:"nested,omitempty"`
 	Requires   Permission    `json:"requires,omitempty"`
-	Priority   MenuPriority  `json:"prioriity"`
+	Priority   MenuPriority  `json:"priority"`
+
+	// Primary marks
+	Primary bool `json:"primary"`
 }
 
 type Role string
