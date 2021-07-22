@@ -170,31 +170,18 @@ func GroupPriority(actions []models.Menu) (primary, secondary []models.Menu) {
 					}
 				}
 			}
-
-			// add every other item
-			for _, action := range actions {
-
-				_, exist := added[action.Code]
-				if !exist && len(action.Nested) == 0 {
-					primary = append(primary, action)
-					added[action.Code] = action
-				}
-
-				if len(primary) == 4 {
-					break
-				}
-			}
-		}
-
-		// add all remaining items to secondary
-		for _, action := range actions {
-			_, exists := added[action.Code]
-			if !exists {
-				secondary = append(secondary, action)
-				added[action.Code] = action
-			}
 		}
 	}
+
+	// add all remaining items to secondary
+	for _, action := range actions {
+		_, exists := added[action.Code]
+		if !exists {
+			secondary = append(secondary, action)
+			added[action.Code] = action
+		}
+	}
+
 	return primary, secondary
 }
 
